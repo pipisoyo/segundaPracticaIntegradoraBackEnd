@@ -5,6 +5,7 @@ const cartsManager = new localCartsManager();
 const localCartsRoute = Router();
 
 localCartsRoute.post("/", async (req, res) => {
+
   try {
     const newCart = await cartsManager.createCart();
     res.status(201).json(newCart);
@@ -15,6 +16,7 @@ localCartsRoute.post("/", async (req, res) => {
 });
 
 localCartsRoute.get("/:cid", async (req, res) => {
+
   try {
     const { cid } = req.params;
     const cart = await cartsManager.getCartById(cid);
@@ -34,6 +36,7 @@ localCartsRoute.get("/:cid", async (req, res) => {
 });
 
 localCartsRoute.post("/:cid/product/:pid/", async (req, res) => {
+
   try {
     const { cid, pid } = req.params;
     const cart = await cartsManager.getCartById(cid);
@@ -42,9 +45,8 @@ localCartsRoute.post("/:cid/product/:pid/", async (req, res) => {
       res.status(cart.statusCode).send(cart.error);
       return;
     }
-
+    
     const updatedCart = await cartsManager.addProductToCart(cid, pid);
-
     res.status(200).json(updatedCart);
   } catch (error) {
     console.error("Error al agregar el producto al carrito:", error);

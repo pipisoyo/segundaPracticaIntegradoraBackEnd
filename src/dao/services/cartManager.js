@@ -9,6 +9,7 @@ export default class CartsManager {
 
         return result
     }
+    
     createCart = async () => {
         let result = await cartsModel.create({})
         return result

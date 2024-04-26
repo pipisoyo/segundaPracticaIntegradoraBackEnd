@@ -10,7 +10,6 @@ export default class usersManager {
             result = await userModel.create(newUser)
         } else {
             return error
-
         }
     }
 }

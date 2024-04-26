@@ -2,12 +2,11 @@ import fs from 'fs'
 import __dirname from '../../utils.js';
 
 export class localProductManager {
+
     constructor() {
         this.products = [];
         this.idCounter = 0;
         this.PATH = `${__dirname}/dataBase/products.json`;
-
-
     }
 
     async handleData() {
@@ -35,6 +34,7 @@ export class localProductManager {
     }
 
     async saveData() {
+
         try {
             await fs.promises.writeFile(this.PATH, JSON.stringify(this.products), null, 2);
         } catch (error) {
@@ -43,6 +43,7 @@ export class localProductManager {
     }
 
     async addProduct(productData) {
+
         await this.handleData();
 
         if (!this.products.some(product => product.code === productData.code)) {
@@ -64,6 +65,7 @@ export class localProductManager {
     }
 
     async getProducts() {
+        
         try {
             await this.handleData();
             return this.products;
