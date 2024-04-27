@@ -2,7 +2,7 @@ import { Router } from "express";
 import { createHash } from "../utils.js";
 import userModel from "../dao/models/users.js";
 import passport from "passport";
-
+import { authUser } from "../middeleweres/auth.js";
 const sessionsRouter = Router();
 
 //Cerrar sesión
@@ -90,6 +90,15 @@ sessionsRouter.post("/restore", async (req, res) => {
   await userModel.updateOne({ _id: user._id }, { $set: { password: newPass } });
 
   res.send({ status: "success", message: "Password actualizado" });
+});
+
+sessionsRouter.get('/current',authUser,async (req,res)=>{
+
+  if (req.user) {
+      res.json({user: req.user });
+  } else {
+      res.status(401).json({ error: 'Usuario no autenticado' });
+  };
 });
 
 export default sessionsRouter;
