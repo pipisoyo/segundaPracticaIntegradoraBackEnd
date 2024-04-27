@@ -1,6 +1,5 @@
 //import localRouterProducts from "./routes/localProductsRoute.js";
 //import localCartsRoute from "./routes/localCartsRoute.js";
-
 import express from "express";
 import handlebars from 'express-handlebars'
 import __dirname from "./utils.js";

@@ -25,7 +25,7 @@ viewesRoutes.get('/products', auth, async (req, res) => {
       const user = await req.session.user;
       const role = await req.session.user.role
       const cartId = await req.session.user.cartId
-      console.log("🚀 ~ viewesRoutes.get ~ cartId:", cartId)
+
       
           const results = await productsModel.find({})
         .skip((page - 1) * limit)
