@@ -19,7 +19,6 @@ viewesRoutes.get('/products', auth, async (req, res) => {
     try {
       const carts = await cartsModel.find({}).lean().exec();  
       const users = await userModel.find({}).lean().exec();  
-      console.log("🚀 ~ viewesRoutes.get ~ users:", users)
       const totalCount = await productsModel.countDocuments({});
       const totalPages = await Math.ceil(totalCount / limit);
       const user = await req.session.user;
